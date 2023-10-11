@@ -108,14 +108,8 @@
 \newcommand\mysubject[1]{\renewcommand\@mysubject{#1}}
 \newcommand\@mycourse{}     % Course, group or team
 \newcommand\mycourse[1]{\renewcommand\@mycourse{#1}}
-\newcommand\@myteacher{}    % Supporting teacher or supervisor
-\newcommand\myteacher[1]{\renewcommand\@myteacher{#1}}
 \newcommand\@myversion{}    % Current version of the document (x.x or yy.mm.xx)
 \newcommand\myversion[1]{\renewcommand\@myversion{#1}}
-\newcommand\@mybegin{}      % Start of work or its documentation
-\newcommand\mybegin[1]{\renewcommand\@mybegin{#1}}
-\newcommand\@myfinish{}     % End of work or its documentation
-\newcommand\myfinish[1]{\renewcommand\@myfinish{#1}}
 
 % :: Colours :: %
 % Colour scheme: https://coolors.co/7c564f-f25f5c-facc6b-93d6a4-247ba0
@@ -124,7 +118,7 @@
 \definecolor{MyRed}{HTML}{f25f5c}
 \definecolor{MyOrange}{HTML}{facc6b}
 \definecolor{MyGreen}{HTML}{93d6a4}
-\definecolor{MyBlue}{HTML}{247ba0}
+\definecolor{MyBlue}{HTML}{1c91ff}
 
 % ------------------- %
 % :: Configuration :: %
@@ -189,41 +183,27 @@
 % :: Title :: %
 \makeatletter
 \renewcommand\@maketitle{
-    \iflogos~\\	% Line fix
-    	\begin{minipage}{3.2cm}
-	        \IfFileExists{images/logo-left.png}{
-	            \includegraphics[width=3.2cm]{images/logo-left.png}}{}
-    	\end{minipage}
-    	\hfill
-        \begin{minipage}{3.2cm}
-	    	\IfFileExists{images/logo-right.png}{
-	            \includegraphics[width=3.2cm]{images/logo-right.png}}{}
-	    \end{minipage}
-    	\vfill\fi 	% Fill space between title header and project logo and headings
     \begin{center}
+        \vspace*{\fill} % Vertical space to center the title vertically
         \if\relax\@mysubject\relax\else     {\Large\@mysubject}     ~\\\vspace{0.5em}\fi
         \if\relax\@mycourse\relax\else      \@mycourse              ~\\\vspace{2em}\fi
         {\Huge\textbf\thetitle}                                     ~\\\vspace{1em}
-        \if\relax\@mysubtitle\relax\else    {\LARGE\@mysubtitle}\fi ~\\\vspace{2em}
+        \if\relax\@mysubtitle\relax\else    {\LARGE\@mysubtitle}\fi \\\vspace{1em}
         \theauthor                                                  ~\\\vspace{0.5em}
         \@date
+        \vspace*{\fill} % Vertical space to center the title vertically
     \end{center}
-    \vfill	% Fill space between headings and the rest of the page
-}\makeatother
+}
+\makeatother
+
 
 % :: Information table after title :: %
 \makeatletter
 \newcommand\maketable{
 	~\\
-    \begin{minipage}[t]{0.3\textwidth}
-        Bewertung:\hfill\vspace{0.5em}\\
-        Betreuer:\hfill\@myteacher
-    \end{minipage}
     \hfill
     \begin{minipage}[t]{0.3\textwidth}
         \if\relax\@myversion\relax\else Version:\hfill\@myversion   \vspace{0.5em}\\\fi
-        \if\relax\@mybegin\relax\else   Begonnen:\hfill\@mybegin    \vspace{0.5em}\\\fi
-        \if\relax\@myfinish\relax\else  Beendet:\hfill\@myfinish    \fi
     \end{minipage}
     \newpage
 }\makeatother
